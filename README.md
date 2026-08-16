@@ -1,2 +1,4 @@
 # BreadLock301's Website
-...I still don't know what to put here.
+GitHub copy of my website on Neocities, as well as some other files that can't be stored in their servers.
+
+<https://breadlock301.neocities.org/>
