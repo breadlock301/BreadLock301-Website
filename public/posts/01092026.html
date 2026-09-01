@@ -1,0 +1,17 @@
+<script>
+    if (window.location.pathname == "/posts/01092026.html") {
+        window.location.replace("/index.html?page=posts&id=01092026");
+    }
+</script>
+<noscript>
+    <a href="/home.html">Back to homepage.</a>
+    <a href="/posts.html">Back to Posts.</a>
+</noscript>
+<h1>1st of September, 2026: Compatability for Disabled Javascript</h1>
+<hr />
+<p>Oh my god. Okay, so, refresher: The system as I had implemented it had a singular index html page that used url parameters to load content from an html page to display in the main content section, and it used a javascript file to load said content. And alongside that, those html pages also had a head section that contained a redirect to the index page with the associated url parameters that would be trimmed off when loaded into the index page. That way, if you tried to access those html pages, you'd just be sent to the index page, but the javascript file loading those pages wouldn't end up in a redirect loop.</p>
+<p>The issue, however, is that if you had Javascript disabled, well. The website wouldn't work. Period. Basically, you couldn't view any of the pages. And I realised that, and I wanted to make a solution for it. And so...</p>
+<p>I've reworked how pages redirect. Instead of redirecting with a header that gets cut off, it instead uses a script that's included in the html to redirect to the index page if the url isn't already there. That way, I don't have to trim ANY code, and everything still works as intended when Javascript in enabled. BUT, when Javascript is DISABLED, the noscript tag in the index page has a link leading directly to home.html, which has a noscript tag that provides a makeshift "navigation" page (but without any autism-ass humour) to important pages, and every page includes a noscript tag to go back to home.html (and additional links depending on what page it is.) This way, you can actually navigate the website either way, and I don't have to worry about all of that. However, these pages don't include any CSS, so you aren't going to get anything fancy.</p>
+<p>However, this does introduce a new problem: Which link do I include in pages? Do I include the index link, which will just display the link asking to go back to the alternate homepage, or do I link the html file directly, which means constant redirects and additional file accessing, which I can't imagine Neocities would appreciate. And, well...</p>
+<p>Unfortunately, the answer is most definitely to link the raw html files is most cases, The only places I can get away with *not* doing that are the navigation links in index.html... Though, I <strong>MIGHT</strong> be able to add code in the javascript file to replace every link with the associated index page, so. If that's something that's possible, I'll likely implement that by the time I upload these new versions of the pages... Or now, who knows?</p>
+<p>For now though, that's all I have to say!!! Cirno Day Post Soon Maybe Woooo!!!</p>

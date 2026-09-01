@@ -42,6 +42,8 @@ if (pageid != null) { //Allows for convenient file naming and organisation for c
     }
 }
 
+//TODO: Figure out which of these pieces of code needs to be moved into writePageContent().
+
 if (page == "navigation") {//Generate navigation page from index.html
     var request = new XMLHttpRequest();
     request.open( "GET", "/index.html", false);
@@ -67,8 +69,23 @@ function writePageContent() {
             request.open( "GET", "/not_found.html", false);
             request.send( null );
         }
-        pageContent = request.responseText.split("</head>").pop();
+        pageContent = request.responseText;
     }
+
+    // Replace direct html links with index.html w/ url param links
+    var whatDoiCallYou = pageContent.match(new RegExp("href\=\"\/[0-9a-z\_\/]*\.html\"", "g"));
+    for (var i = 0; i < whatDoiCallYou.length; i++) {
+        var refLink = whatDoiCallYou[i].split("href=\"/").pop().split(".html\"").shift().split("/");
+        console.log(refLink);
+        if (refLink.length > 2 || refLink.length < 1) {continue;} //If I ever ended up with a link like that, that ain't my link. Hopefully this doesn't falsely detect external links...
+        if (refLink.length == 2) { //One subfolder
+            pageContent = pageContent.replace(whatDoiCallYou[i], "href=\"/index.html?page=" + refLink[0] + "&id=" + refLink[1] + "\"");
+        } else { //No subfolder
+            pageContent = pageContent.replace(whatDoiCallYou[i], "href=\"/index.html?page=" + refLink[0] + "\"");
+        }
+    }
+
+    console.log(pageContent);
 
     // Write the page to the HTML
     document.write( pageContent );
