@@ -79,6 +79,7 @@ function writePageContent() {
         console.log(refLink);
         if (refLink.length > 2 || refLink.length < 1) {continue;} //If I ever ended up with a link like that, that ain't my link. Hopefully this doesn't falsely detect external links...
         if (refLink.length == 2) { //One subfolder
+            if (!(refLink[0] == "posts" || refLink[0] == "hobbies" || refLink[0] == "projects")) {continue;} //This should prevent the file from touching subpages that are intentionally seperate (i.e. a page that has its own dedicated index page.)
             pageContent = pageContent.replace(whatDoiCallYou[i], "href=\"/index.html?page=" + refLink[0] + "&id=" + refLink[1] + "\"");
         } else { //No subfolder
             pageContent = pageContent.replace(whatDoiCallYou[i], "href=\"/index.html?page=" + refLink[0] + "\"");
