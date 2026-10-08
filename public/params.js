@@ -35,6 +35,8 @@ if (pageid != null) { //Allows for convenient file naming and organisation for c
             page = "hobbies/" + pageid;
         } else if (page == "posts") {
             page = "posts/" + pageid;
+        } else if (page == "cd") {
+            page = "cd/" + pageid;
         } else { //Joke page. I know, how funny.
             pageContent = `<h1>Alright, here's your id&colon;</h1>
             <p style="text-align: center;">` + pageid + `</p>`;
@@ -76,17 +78,17 @@ function writePageContent() {
     var whatDoiCallYou = pageContent.match(new RegExp("href\=\"\/[0-9a-z\_\/]*\.html\"", "g"));
     for (var i = 0; i < whatDoiCallYou.length; i++) {
         var refLink = whatDoiCallYou[i].split("href=\"/").pop().split(".html\"").shift().split("/");
-        console.log(refLink);
+        //console.log(refLink);
         if (refLink.length > 2 || refLink.length < 1) {continue;} //If I ever ended up with a link like that, that ain't my link. Hopefully this doesn't falsely detect external links...
         if (refLink.length == 2) { //One subfolder
-            if (!(refLink[0] == "posts" || refLink[0] == "hobbies" || refLink[0] == "projects")) {continue;} //This should prevent the file from touching subpages that are intentionally seperate (i.e. a page that has its own dedicated index page.)
+            if (!(refLink[0] == "posts" || refLink[0] == "hobbies" || refLink[0] == "projects" || refLink[0] == "cd")) {continue;} //This should prevent the file from touching subpages that are intentionally seperate (i.e. a page that has its own dedicated index page.)
             pageContent = pageContent.replace(whatDoiCallYou[i], "href=\"/index.html?page=" + refLink[0] + "&id=" + refLink[1] + "\"");
         } else { //No subfolder
             pageContent = pageContent.replace(whatDoiCallYou[i], "href=\"/index.html?page=" + refLink[0] + "\"");
         }
     }
 
-    console.log(pageContent);
+    //console.log(pageContent);
 
     // Write the page to the HTML
     document.write( pageContent );
