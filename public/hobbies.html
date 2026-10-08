@@ -1,5 +1,5 @@
 <script>
-    if (window.location.pathname == "/hobbies.html") {
+    if (window.location.pathname.split(".").shift == "/hobbies.html") {
         window.location.replace("/index.html?page=hobbies");
     }
 </script>

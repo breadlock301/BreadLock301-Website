@@ -1,6 +1,5 @@
 <script>
-    console.log(window.location.pathname); //Testing to see what Neocities does with this.
-    if (window.location.pathname == "/posts.html") {
+    if (window.location.pathname.split(".").shift == "/posts.html") {
         window.location.replace("/index.html?page=posts");
     }
 </script>
