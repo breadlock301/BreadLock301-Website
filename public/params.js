@@ -25,10 +25,7 @@ if (page != null && page.match("^[a-z0-9]*$") == null) { //Important safety guar
 }
 
 if (pageid != null) { //Allows for convenient file naming and organisation for certain pages.
-    if (pageid.match("^[0-9]*$") == null) {
-        pageid = null;
-        page = "not_found";
-    } else {
+    if (pageid.match("^[0-9]*$")) {
         if (page == "projects") {
             page = "projects/" + pageid;
         } else if (page == "hobbies") {
@@ -41,6 +38,9 @@ if (pageid != null) { //Allows for convenient file naming and organisation for c
             pageContent = `<h1>Alright, here's your id&colon;</h1>
             <p style="text-align: center;">` + pageid + `</p>`;
         }
+    } else {
+        pageid = null;
+        page = "not_found";
     }
 }
 
